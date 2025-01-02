@@ -1,0 +1,939 @@
+{
+	"info": {
+		"_postman_id": "c9517fb7-716a-49d9-bb90-8b0ae0b5f6fe",
+		"name": "MultiRotorResearch APIs",
+		"description": "This documentation will help you understand and integrate with our API, empowering you to make the most of our project's capabilities. Each collection serves as a logical grouping of API endpoints and functionalities related to a specific aspect of our project.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25803935"
+	},
+	"item": [
+		{
+			"name": "Identity API",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = JSON.parse(pm.response.text());\r",
+									"const jwtToken = responseJson.token;\r",
+									"\r",
+									"pm.collectionVariables.set(\"jwt_token\", jwtToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"baptist.o@outlook.com\",\r\n    \"password\": \"@Test12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jwtToken = pm.response.text();\r",
+									"pm.collectionVariables.set(\"jwt_token\", jwtToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Andrew\",\r\n    \"email\": \"baptist.o@outlook.com\",\r\n    \"password\": \"@Test12345\",\r\n    \"role\": 0,\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/auth/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drones API",
+			"item": [
+				{
+					"name": "GetDroneById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/drones/471ab720-9703-4e3c-8172-c9dcb45820ff",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"drones",
+								"471ab720-9703-4e3c-8172-c9dcb45820ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllDronesByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/drones",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"drones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateDrone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"testing2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/drones",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"drones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateDrone",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"5cc24848-961b-482a-be67-7b7953c2ec7d\",\r\n    \"name\": \"Mint\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/drones/b4172aa4-6c87-4103-a253-976d99dfb842",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"drones",
+								"b4172aa4-6c87-4103-a253-976d99dfb842"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteDrone",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/drones/b4172aa4-6c87-4103-a253-976d99dfb842",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"drones",
+								"b4172aa4-6c87-4103-a253-976d99dfb842"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "App API",
+			"item": [
+				{
+					"name": "GetAllApps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/apps",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"apps"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "MissionApp API",
+			"item": [
+				{
+					"name": "GetMissionAppById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/mission-app/{uuid}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mission-app",
+								"{uuid}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMissionApp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/mission-app/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mission-app"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateMissionApp",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/mission-app/{uuid}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mission-app",
+								"{uuid}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FlightReports API",
+			"item": [
+				{
+					"name": "GetImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports/all/images/flights%2F45a2d93a-59d0-4b3c-83ca-998b086cf835%2Fimage_2.jpeg",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports",
+								"all",
+								"images",
+								"flights%2F45a2d93a-59d0-4b3c-83ca-998b086cf835%2Fimage_2.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetImageNames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports/c1586c40-ba89-4925-9089-61d65d2983f3/image-names",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports",
+								"c1586c40-ba89-4925-9089-61d65d2983f3",
+								"image-names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetFlightReport",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports/11e65c5b-83e2-4cd8-8e2b-baaf6c9fb16c",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports",
+								"11e65c5b-83e2-4cd8-8e2b-baaf6c9fb16c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFlightReportsByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateFlightReport",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"droneId\": \"ed67e2a0-a041-4780-adf8-38b6dcfa22fd\",\r\n    \"missionId\": \"86af1b90-f968-47df-b2f7-f268ee935ad1\",\r\n    \"executeAt\": \"2023-10-30T15:35:55.403Z\",\r\n    \"executeImmediate\": true,\r\n    \"data\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteFlightReport",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/flight-reports/20692664-2651-49c4-b4ce-3a4f9d384fd5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"flight-reports",
+								"20692664-2651-49c4-b4ce-3a4f9d384fd5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Missions API",
+			"item": [
+				{
+					"name": "GetMission",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/missions/86af1b90-f968-47df-b2f7-f268ee935ad1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"missions",
+								"86af1b90-f968-47df-b2f7-f268ee935ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllMissionsByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/missions",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"missions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"FirstEindhoven\",\r\n    \"waypoints\": [\r\n        {\r\n            \"longitude\": 5.455123749077188,\r\n            \"latitude\": 51.45021065826472,\r\n            \"altitude\": 4,\r\n            \"heading\": 0,\r\n            \"order\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/missions",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"missions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateMission",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"5950bd24-85b4-44b3-a668-171da3dbdcfb\",\r\n    \"name\": \"ModifiedEindhoven\",\r\n    \"createdAt\": \"2023-10-09T16:17:28.9179841Z\",\r\n    \"waypoints\": [\r\n        {\r\n            \"missionId\": \"fe9fe625-586a-45f7-8241-7ce70baf4315\",\r\n            \"longitude\": 5.455123749077188,\r\n            \"latitude\": 51.45021065826472,\r\n            \"altitude\": 4,\r\n            \"heading\": 0,\r\n            \"order\": 2\r\n        },\r\n        {\r\n            \"missionId\": \"a43b470e-85b1-40a9-b417-80064b214146\",\r\n            \"longitude\": 5.455551655412563,\r\n            \"latitude\": 51.45033310572853,\r\n            \"altitude\": 4,\r\n            \"heading\": 0,\r\n            \"order\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/missions/fe9fe625-586a-45f7-8241-7ce70baf4315",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"missions",
+								"fe9fe625-586a-45f7-8241-7ce70baf4315"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/missions/86af1b90-f968-47df-b2f7-f268ee935ad1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"missions",
+								"86af1b90-f968-47df-b2f7-f268ee935ad1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Appstore API",
+			"item": [
+				{
+					"name": "RunWebOdm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/odm/run/fe9fe625-586a-45f7-8241-7ce70baf4315/45a2d93a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"odm",
+								"run",
+								"fe9fe625-586a-45f7-8241-7ce70baf4315",
+								"45a2d93a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OdmGetUpdate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/odm/taskData/fe9fe625-586a-45f7-8241-7ce70baf4315",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"odm",
+								"taskData",
+								"fe9fe625-586a-45f7-8241-7ce70baf4315"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RunWebOdm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/odm/taskProgress/fe9fe625-586a-45f7-8241-7ce70baf4315",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"odm",
+								"taskProgress",
+								"fe9fe625-586a-45f7-8241-7ce70baf4315"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users API",
+			"item": [
+				{
+					"name": "GetUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/users/ca7f673c-4f4a-41d4-b562-645239e1e524",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"ca7f673c-4f4a-41d4-b562-645239e1e524"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Daniella\",\r\n    \"email\": \"Daniella@test.nl\",\r\n    \"password\": \"Test1234!\",\r\n    \"role\": 0,\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Marsik\",\r\n    \"email\": \"plam@gmail.com\",\r\n    \"role\": 0,\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5000/api/users/8689bf33-c1f4-4162-a049-5dc94106cc3b",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"8689bf33-c1f4-4162-a049-5dc94106cc3b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/api/users/5cc24848-961b-482a-be67-7b7953c2ec7d",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"5cc24848-961b-482a-be67-7b7953c2ec7d"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt_token",
+			"value": ""
+		}
+	]
+}

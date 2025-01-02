@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  identity-database:
+    container_name: identity-database
+    image: postgres:16.0-alpine3.18
+    environment:
+      - POSTGRES_DB=IdentityDatabase
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5431:5432"
+  
+  application-database:
+    container_name: application-database
+    image: postgres:16.0-alpine3.18
+    environment:
+      - POSTGRES_DB=ApplicationDatabase
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5435:5432"

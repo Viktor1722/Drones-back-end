@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+    api:
+        container_name: api
+        # image: multirotorresearch/drone-dashboard-api:development              --> PRODUCTION: UNCOMMENT THIS AND COMMENT LINE UNDER, DEVELOPMENT: LEAVE THIS AS IS
+        build: .
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+            - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+        ports:
+            - "5000:80"
+            - "5001:443"
+    
+    identity-database:
+        container_name: identity-database
+        image: postgres:16.0-alpine3.18
+        environment:
+            - POSTGRES_DB=IdentityDatabase
+            - POSTGRES_USER=${DEVELOPMENT_DATABASE_USERNAME}
+            - POSTGRES_PASSWORD=${DEVELOPMENT_DATABASE_PASSWORD}
+        ports:
+            - "5431:5432"
+        volumes:
+            - ./db_volumes/identity/:/var/lib/postgresql/data
+
+    application-database:
+        container_name: application-database
+        image: postgres:16.0-alpine3.18
+        environment:
+            - POSTGRES_DB=ApplicationDatabase
+            - POSTGRES_USER=${DEVELOPMENT_DATABASE_USERNAME}
+            - POSTGRES_PASSWORD=${DEVELOPMENT_DATABASE_PASSWORD}
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./db_volumes/application/:/var/lib/postgresql/data
